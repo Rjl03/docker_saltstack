@@ -1,0 +1,12 @@
+version: '3'
+services:
+        minion:
+                image: jmarhee/salt-minion
+                links:
+                        - master
+                depends_on:
+                        - master
+                scale: 3
+
+        master:
+                image: jmarhee/salt-master
