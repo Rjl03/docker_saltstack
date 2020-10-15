@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/bash 
 
-key_checker() {
+key_checker () {
 
 	x=1
-	while [ $x -le 250]
+	while [ $x -le 250 ]
 		do
-		salt-key -A -y
-		x=$ (( $x + 1 ))
+  		salt-key -A -y
+  		x=$(( $x + 1 ))
 		sleep 1
 	done
 	echo "All available keys accepted." && salt "*" test.ping && \
@@ -15,5 +15,4 @@ key_checker() {
 
 }
 
-service salt-master start && key_checker()
-
+service salt-master start && key_checker
