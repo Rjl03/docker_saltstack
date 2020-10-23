@@ -1,23 +1,36 @@
 version: '3'
-services:
-  minion:
-    image: salt-minion
-    links: 
-      - master
+
+services: 
+  salt-master:
+    container_name: salt-master
+    hostname: salt-master
+    image: docker_saltstack:master
+    networks: 
+      saltnetwork:
+       aliases: 
+        - salt-master
+
+  salt-minion1:
+    image: docker_saltstack:minion
+    container_name: MINION1
+    hostname: MINION1
     depends_on:
-      - master
-    networks:
+      - salt-master
+    networks: 
       saltnetwork:
-        aliases:
-          - minion
+       aliases: 
+        - MINION1
 
-
-  master:
-    image: salt-master
-    networks:
+  salt-minion2:
+    image: docker_saltstack:minion
+    container_name: MINION2
+    hostname: MINION2
+    depends_on:
+      - salt-master
+    networks: 
       saltnetwork:
-        aliases: 
-          - master
+       aliases: 
+        - MINION2
 
 networks:
   saltnetwork:

@@ -6,8 +6,7 @@ RUN echo "deb http://repo.saltstack.com/py3/ubuntu/20.04/amd64/latest focal main
 RUN apt-get update
 RUN apt-get install -y salt-minion curl
 
+RUN echo "master: salt-master" >> /etc/salt/minion
 
-COPY setup.sh /opt/setup.sh
 
-ENTRYPOINT ["sh","/opt/setup.sh"]
-CMD []
+ENTRYPOINT ["salt-minion", "-l", "debug"]

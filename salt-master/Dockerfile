@@ -9,6 +9,4 @@ RUN apt-get install -y salt-master
 
 EXPOSE 4505 4506
 
-COPY setup.sh /opt/setup.sh
-
-ENTRYPOINT ["cmd"]
+ENTRYPOINT ["salt-master", "-l", "debug"]
